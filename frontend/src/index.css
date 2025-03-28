@@ -1,0 +1,191 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 5% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 5% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 5% 20%;
+
+    --primary: 168 84% 31%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 5% 20%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 5% 60%;
+
+    --accent: 168 84% 31%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 350 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 168 84% 31%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 164 84% 20%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 164 84% 20%;
+    --sidebar-accent: 164 59% 35%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 164 59% 35%;
+    --sidebar-ring: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 220 20% 12%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 25% 15%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 25% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 168 84% 31%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 220 30% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 30% 20%;
+    --muted-foreground: 210 20% 75%;
+
+    --accent: 168 84% 31%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 350 100% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 30% 20%;
+    --input: 220 30% 20%;
+    --ring: 168 84% 31%;
+
+    --sidebar-background: 164 84% 20%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 164 84% 20%;
+    --sidebar-accent: 164 59% 35%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 164 59% 35%;
+    --sidebar-ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom styles */
+.stat-card {
+  @apply bg-card rounded-xl shadow-sm p-6 border border-border;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  @apply shadow-md;
+}
+
+.chart-container {
+  @apply rounded-xl bg-card border border-border p-6 h-[300px];
+}
+
+.sparkline-path {
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.increase-text {
+  @apply text-increase;
+}
+
+.decrease-text {
+  @apply text-decrease;
+}
+
+.sidebar-item {
+  @apply flex items-center gap-3 px-3 py-2 rounded-md text-[15px] font-medium transition-all duration-200;
+}
+
+.sidebar-item.active {
+  @apply bg-sidebar-accent text-sidebar-accent-foreground;
+}
+
+.sidebar-item:not(.active):hover {
+  @apply bg-sidebar-accent/20 text-sidebar-foreground;
+}
+
+.tooltip {
+  @apply absolute z-50 px-2 py-1 text-xs bg-foreground text-background rounded-md shadow-md;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(5px);
+  pointer-events: none;
+}
+
+.tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-transition-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.card-transition-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.card-transition-exit {
+  opacity: 1;
+}
+
+.card-transition-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Loader animation */
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(13, 145, 113, 0.3);
+  border-radius: 50%;
+  border-top-color: rgb(13, 145, 113);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
